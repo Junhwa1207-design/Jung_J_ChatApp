@@ -5,22 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/main.caa">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
     <title>My Chat Page</title>
 </head>
 <body>
 
     <main id="app">
-        <h2>This is where my awesome chat message will show up</h2>
+
+  
+         <h2>Okay Chat</h2>
+
+ 
+
+    <section class="messages">
+        <ul id="messages" v-for="message in messages">
+            <newmessage :msg="message" :socketid="socketID"></newmessage>
+        </ul>
+    </section>
 
         <section class="message-wrapper">
-            <textarea class="text-message" ></textarea>
-            <input type="submit" value="send">
+            <textarea v-model="message" class="text-message" >
+         
+            </textarea>
+            
+         
+            <!-- <input  class="send" @click.prevent="dispatchMessage" type="submit" value="send"> -->
+            <i id="send" class="fas fa-paper-plane"  @click.prevent="dispatchMessage" ></i> 
+            
         </section>
+       
+
     </main>
+
+    
+    <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script defer src="scripts/main.js"></script>
+    <script defer type="module" src="scripts/main.js"></script>
     
 </body>
 </html>
