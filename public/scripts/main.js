@@ -17,10 +17,6 @@ import ChatMessage from "./components/TheMessageComponent.js"
                 //debugger;
                 vm.messages.push(message);
         }
-        function appendUsername(username) {
-                //debugger;
-                vm.username.push(username);
-        }
 
         const vm = new Vue({
                 data: {
@@ -38,16 +34,11 @@ import ChatMessage from "./components/TheMessageComponent.js"
                 methods: {
                         dispatchMessage() {
                                 //debugger;
-                                socket.emit('chatmessage', {content: this.message, name: this.username || ""});
+                                socket.emit('chatmessage', {content: this.message, name: this.username || "anonymouse"});
 
                                 this.message = "";
-                        },
-                        dispatchUsername() {
-                                //debugger;
-                                socket.emit('username', {content: this.username, name: this.username || ""});
-
-                                this.username = "";
                         }
+                      
                 },
 
 
@@ -59,5 +50,5 @@ import ChatMessage from "./components/TheMessageComponent.js"
 
         socket.addEventListener("connected", setUserId);
         socket.addEventListener('message', appendMessage);
-        socket.addEventListener('username', appendUsername);
+       
 })();
